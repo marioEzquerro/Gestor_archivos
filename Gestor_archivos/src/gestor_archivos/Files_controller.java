@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Controlador del menu principal de la aplicacion del que ramifican el resto de ventanas
  */
 package gestor_archivos;
 
@@ -13,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -20,8 +19,17 @@ import javafx.stage.Stage;
  * @author alumno
  */
 public class Files_controller implements Initializable {
+    
+    public static String getRuta() {
+        return "/home/alumno/FILES/"; //CAMBIAR EN CASO DE ERRORES
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
 
     @FXML
+    // Info > ver autor
     public void openAbout(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/about/About_ventana.fxml"));
@@ -40,18 +48,34 @@ public class Files_controller implements Initializable {
     }
 
     @FXML
+    // File > abrir
     public void abrirArchivo(ActionEvent event) {
-        System.out.println("Abriendo...");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/abrir/Abrir_ventana.fxml"));
+            Parent root2 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+
+            Scene scene = new Scene(root2);
+
+            stage.setTitle("Abir");
+            stage.setScene(scene);
+
+            stage.initModality(Modality.APPLICATION_MODAL); // bloquear ventana principal
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     @FXML
-    public void crearArchivo(ActionEvent event) {
-        System.out.println("Creando...");
+    public void guardarArchivo(ActionEvent event) {
+        System.out.println("Guardando...");
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
+    @FXML
+    public void borrarArchivo(ActionEvent event) {
+        System.out.println("Borrando...");
     }
 
 }

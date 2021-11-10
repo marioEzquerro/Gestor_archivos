@@ -17,8 +17,9 @@
                </items></Menu>
           <Menu fx:id="btnFile" mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#abrirArchivo" text="Abrir Archivo" />
-                  <MenuItem mnemonicParsing="false" onAction="#crearArchivo" text="Crear Archivo" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirArchivo" text="Abrir " />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarArchivo" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#borrarArchivo" text="Borrar" />
                </items></Menu>
         </menus>
       </MenuBar>

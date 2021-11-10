@@ -1,19 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Controlador para arrancar el menu principal "Files_ventana.fxml"
  */
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
  *
- * @author alumno
+ * @author Mario Ezquerro
  */
 public class Gestor_archivos extends Application {
 
@@ -24,6 +22,7 @@ public class Gestor_archivos extends Application {
         Scene scene = new Scene(root);
 
         stage.setTitle("Gestor M10");
+        stage.getIcons().add(new Image("/sources/portada.png"));
         stage.setScene(scene);
         stage.show();
 
@@ -31,9 +30,6 @@ public class Gestor_archivos extends Application {
         stage.setOnCloseRequest(e -> Platform.exit());
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }

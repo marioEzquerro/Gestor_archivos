@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Controlador para la responsividad de la imagen en "About_ventana"
  */
 package about;
 
@@ -14,16 +12,16 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author alumno
+ * @author Mario Ezquerro
  */
 public class About_controller implements Initializable {
 
     @FXML
     private ImageView imgView;
-
     @FXML
     private Pane border;
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgView.fitHeightProperty().bind(border.heightProperty());
         imgView.fitWidthProperty().bind(border.widthProperty());

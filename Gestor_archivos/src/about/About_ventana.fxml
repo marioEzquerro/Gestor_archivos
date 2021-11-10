@@ -16,7 +16,7 @@
          <bottom>
             <VBox prefHeight="70.0" prefWidth="327.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea editable="false" prefHeight="42.0" prefWidth="317.0" text="Esta aplicacion de edicion de archivos ha sido creada por Mario Ezquerro Ruiz" wrapText="true" />
+                  <TextArea editable="false" prefHeight="42.0" prefWidth="317.0" text="Esta aplicacion de gestion de archivos ha sido creada por Mario Ezquerro Ruiz." wrapText="true" />
                   <TextField alignment="TOP_CENTER" editable="false" prefWidth="403.0" text="Copyright 2021 ©" />
                </children>
             </VBox>
@@ -26,7 +26,7 @@
                <children>
                   <ImageView fx:id="imgView" fitHeight="237.0" fitWidth="244.0" layoutX="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../imagen-documentos-1.jpg" />
+                        <Image url="@../sources/portada.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />

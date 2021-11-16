@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/alumno/MARIO%20DAM1/TRABAJOS/Diseño%20de%20interfaces%20(Rafael)/NetBeans/Gestor_archivos_V2/Gestor_archivos/src/Gestor_archivos.java</file>
+            <file>file:/media/sf_F_DRIVE/TRABAJOS/Diseño%20de%20interfaces%20(Rafael)/NetBeans/Gestor_archivos/src/Common/Constants.java</file>
+            <file>file:/media/sf_F_DRIVE/TRABAJOS/Diseño%20de%20interfaces%20(Rafael)/NetBeans/Gestor_archivos/src/Common/Funciones.java</file>
+            <file>file:/media/sf_F_DRIVE/TRABAJOS/Diseño%20de%20interfaces%20(Rafael)/NetBeans/Gestor_archivos/src/Gestor_archivos.java</file>
+            <file>file:/media/sf_F_DRIVE/TRABAJOS/Diseño%20de%20interfaces%20(Rafael)/NetBeans/Gestor_archivos/src/abrir/Abrir_controller.java</file>
+            <file>file:/media/sf_F_DRIVE/TRABAJOS/Diseño%20de%20interfaces%20(Rafael)/NetBeans/Gestor_archivos/src/crear/Crear_controller.java</file>
+            <file>file:/media/sf_F_DRIVE/TRABAJOS/Diseño%20de%20interfaces%20(Rafael)/NetBeans/Gestor_archivos/src/gestor_archivos/Files_controller.java</file>
         </group>
     </open-files>
 </project-private>

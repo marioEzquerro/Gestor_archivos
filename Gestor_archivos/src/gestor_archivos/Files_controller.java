@@ -1,8 +1,10 @@
-/*
- * Controlador del menu principal de la aplicacion del que ramifican el resto de ventanas
- */
 package gestor_archivos;
 
+import Common.*;
+import abrir.Abrir_controller;
+import crear.Crear_controller;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -11,32 +13,43 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
+ * @author Mario Ezquerro
  *
- * @author alumno
+ * Controlador del menu principal de la aplicacion del que ramifican el resto de
+ * ventanas
  */
 public class Files_controller implements Initializable {
-    
-    public static String getRuta() {
-        return "/home/alumno/FILES/"; //CAMBIAR EN CASO DE ERRORES
-    }
-    
+
+    @FXML
+    public TextArea textArea; // el original
+    public Stage MainStage;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Funciones.resetPath();
+    }
+
+    public void setMainStage(Stage stg) {
+        MainStage = stg;
+    }
+
+    public TextArea getTextArea() {
+        return textArea;
     }
 
     @FXML
     // Info > ver autor
-    public void openAbout(ActionEvent event) {
+    private void openAbout(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/about/About_ventana.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/about/About_ventana.fxml"));
 
-            Scene scene = new Scene(root1);
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
 
             stage.setTitle("About");
             stage.setScene(scene);
@@ -52,12 +65,14 @@ public class Files_controller implements Initializable {
     public void abrirArchivo(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/abrir/Abrir_ventana.fxml"));
-            Parent root2 = (Parent) fxmlLoader.load();
+            Parent root = (Parent) fxmlLoader.load();
+            Abrir_controller ac = (Abrir_controller) fxmlLoader.getController();
+            ac.setMainStage(MainStage, textArea);
+
             Stage stage = new Stage();
+            Scene scene = new Scene(root);
 
-            Scene scene = new Scene(root2);
-
-            stage.setTitle("Abir");
+            stage.setTitle(Constants.path);
             stage.setScene(scene);
 
             stage.initModality(Modality.APPLICATION_MODAL); // bloquear ventana principal
@@ -69,13 +84,46 @@ public class Files_controller implements Initializable {
     }
 
     @FXML
-    public void guardarArchivo(ActionEvent event) {
-        System.out.println("Guardando...");
+    // File > Guardar que llama a la la funcion para abrir Crear_archivo.fxml
+    public void guardarArchivo(ActionEvent event) throws IOException {
+        File archivo = new File(Constants.path);
+
+        if (archivo.exists() && !Constants.path.equals(Constants.DEFAULT_PATH)) { // si el archivo ya existe y hemos abierto uno reescribimos
+            Funciones.escribirEnArchivo(archivo, textArea.getText());
+        } else {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/crear/Crear_archivo.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+                Crear_controller c = (Crear_controller) fxmlLoader.getController(); //cargamos el controlador de "crear"
+
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+
+                c.recibir("Crear Archivo"); // enviar titulo ("Crear ...")
+                Constants.textAreaContent = textArea.getText();
+
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
     }
 
     @FXML
+    // File > Borrar
     public void borrarArchivo(ActionEvent event) {
-        System.out.println("Borrando...");
+        if (!Constants.path.equals(Constants.DEFAULT_PATH)) {
+            Funciones.borrarElementosRecursivo(new File(Constants.path));
+            crearNuevo(event);
+        }
     }
 
+    @FXML
+    // File > Crear Nuevo
+    public void crearNuevo(ActionEvent event) {
+        textArea.setText("");
+        ((Stage) textArea.getScene().getWindow()).setTitle("NUEVO ARCHIVO");
+    }
 }

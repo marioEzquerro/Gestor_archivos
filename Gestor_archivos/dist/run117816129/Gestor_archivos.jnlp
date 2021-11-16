@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Gestor_archivos.jar" size="85571" download="eager" />
+    <jar href="Gestor_archivos.jar" size="72870" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Gestor_archivos" >
     <param name="requiredFXVersion" value="8.0+"/>

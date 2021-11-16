@@ -1,6 +1,5 @@
-/*
- * Controlador para arrancar el menu principal "Files_ventana.fxml"
- */
+
+import gestor_archivos.Files_controller;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -10,28 +9,45 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- *
  * @author Mario Ezquerro
+ *
+ * Controlador para arrancar el menu principal "Files_ventana.fxml"
  */
 public class Gestor_archivos extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/gestor_archivos/Files_ventana.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gestor_archivos/Files_ventana.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Files_controller fc = (Files_controller) fxmlLoader.getController(); //cargamos el controlador de "cre
 
         Scene scene = new Scene(root);
 
-        stage.setTitle("Gestor M10");
-        stage.getIcons().add(new Image("/sources/portada.png"));
+        fc.setMainStage(stage);
+
+        stage.setTitle("NUEVO ARCHIVO");
         stage.setScene(scene);
+        stage.getIcons().add(new Image("/sources/portada.png"));
         stage.show();
 
-        //eliminar todas las ventanas tras cerrar esta
-        stage.setOnCloseRequest(e -> Platform.exit());
+        stage.setOnCloseRequest(e -> Platform.exit()); // eliminar todas las ventanas tras cerrar esta
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
 }
+/*
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gestor_archivos/Files_ventana.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Files_controller fc = (Files_controller) fxmlLoader.getController(); //cargamos el controlador de "cre
+
+        Scene scene = new Scene(root);
+
+        //      fc.setMainStage(stage, fc.getTextArea());
+        stage.getIcons().add(new Image("/sources/portada.png"));
+        stage.show();
+
+        stage.setOnCloseRequest(e -> Platform.exit()); // eliminar todas las ventanas tras cerrar esta
+ */

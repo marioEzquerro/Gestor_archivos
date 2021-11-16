@@ -20,6 +20,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#abrirArchivo" text="Abrir " />
                   <MenuItem mnemonicParsing="false" onAction="#guardarArchivo" text="Guardar" />
                   <MenuItem mnemonicParsing="false" onAction="#borrarArchivo" text="Borrar" />
+                  <MenuItem mnemonicParsing="false" onAction="#crearNuevo" text="Crear nuevo" />
                </items></Menu>
         </menus>
       </MenuBar>

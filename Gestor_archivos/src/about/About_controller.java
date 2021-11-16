@@ -1,6 +1,3 @@
-/*
- * Controlador para la responsividad de la imagen en "About_ventana"
- */
 package about;
 
 import java.net.URL;
@@ -11,8 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 /**
- *
  * @author Mario Ezquerro
+ *
+ * Controlador para la responsividad de la imagen en "About_ventana"
  */
 public class About_controller implements Initializable {
 

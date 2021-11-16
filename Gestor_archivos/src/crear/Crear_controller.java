@@ -1,24 +1,20 @@
-/*
- * Controlador encargado del menu contextual y la creacion del archivo y carpetas
- */
 package crear;
 
-import abrir.Abrir_controller;
-import gestor_archivos.Files_controller;
+import Common.*;
 import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
- *
  * @author Mario Ezquerro
+ *
+ * Controlador encargado del menu contextual y la creacion del archivo y
+ * carpetas
  */
 public class Crear_controller {
 
@@ -28,33 +24,29 @@ public class Crear_controller {
     private Button btnCrear;
     @FXML
     private Text desc;
-
-    // importados
-    private Abrir_controller abrirController;
-    public Text titulo;
+    @FXML
+    private Text accion;
 
     public void closeVentana(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+        Funciones.cerrarVentana(event);
     }
 
     public void crear(ActionEvent event) throws IOException {
-        File rutaArch = new File(Files_controller.getRuta() + campo.getText() + ".txt");
-        File rutaCarp = new File(Files_controller.getRuta() + campo.getText());
+        File archivo = new File(Constants.path + "/" + campo.getText() + ".txt");
+        File carpeta = new File(Constants.path + "/" + campo.getText());
 
-        if (!rutaArch.exists() && titulo.getText().equals("Crear Archivo")) { // creamos archivo (no existe)
-            desc.setText(crearElemento(rutaArch, "Crear Archivo"));
-        } else if (!rutaCarp.exists() && titulo.getText().equals("Crear Carpeta")) { // creamos carpeta (no existe)
-            desc.setText(crearElemento(rutaCarp, "Crear Carpeta"));
-        } else { 
+        if (!archivo.exists() && accion.getText().equals("Crear Archivo")) { // creamos archivo (no existe)
+            desc.setText(resultadoCreacionElemento(archivo, "Crear Archivo"));
+            Funciones.escribirEnArchivo(archivo, Constants.textAreaContent);
+        } else if (!carpeta.exists() && accion.getText().equals("Crear Carpeta")) { // creamos carpeta (no existe)
+            desc.setText(resultadoCreacionElemento(carpeta, "Crear Carpeta"));
+        } else {
             desc.setText("Ya existe");
         }
-        abrirController.dibujarElementos();
     }
 
     // crear carpeta/archivo
-    public String crearElemento(File ruta, String nombre) throws IOException {
+    public String resultadoCreacionElemento(File ruta, String nombre) throws IOException {
         if (nombre.equals("Crear Archivo")) {
             return (ruta.createNewFile()) ? "Archivo creado" : "¡Error!";
         } else {
@@ -62,7 +54,7 @@ public class Crear_controller {
         }
     }
 
-    // llamado con el imput de teclado
+    // llamado con el input de teclado
     public void checkEmpty(KeyEvent event) {
         desc.setText(""); // vaciar campo de descripcion del estado
 
@@ -77,10 +69,8 @@ public class Crear_controller {
         }
     }
 
-    // recibe  y almacena controller, tilePane, y el string "Crear ..."
-    public void recibir(Abrir_controller contr, String tipo) {
-        abrirController = contr;
-        titulo.setText(tipo);
+    // recibe y almacena el string "Crear ..."
+    public void recibir(String tit) {
+        accion.setText(tit);
     }
-
 }
